@@ -16,5 +16,6 @@ def test_kafka_message_delivery():
     kafka.send_message(topic, key, test_msg)
 
     messages = kafka.consume_messages(topic, group_id, expected_count=1)
+    print('messages:', messages)
 
     assert any(msg["content"] == "Kafka message test" for msg in messages)

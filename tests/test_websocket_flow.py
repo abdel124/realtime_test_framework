@@ -8,7 +8,9 @@ def test_ws_message_exchange():
     test_data = {"user_id": "test1", "content": "hello"}
     ws.send(test_data)
 
-    time.sleep(2)  # give server time to respond
+    time.sleep(2)
     ws.close()
+    print("All received messages:", ws.messages)
 
-    assert any(m["content"] == "hello" for m in ws.messages)
+    # ✅ Fix: Check nested structure under "echo"
+    assert any("echo" in m and m["echo"]["content"] == "hello" for m in ws.messages)

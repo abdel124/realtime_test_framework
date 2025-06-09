@@ -6,3 +6,6 @@ kafka-python
 locust
 
 prometheus-api-client
+
+fastapi
+uvicorn
