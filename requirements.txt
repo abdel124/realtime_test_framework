@@ -1,0 +1,8 @@
+pytest
+httpx
+websocket-client
+kafka-python
+
+locust
+
+prometheus-api-client
