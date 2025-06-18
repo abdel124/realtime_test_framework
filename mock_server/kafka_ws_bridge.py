@@ -8,7 +8,7 @@ connected_clients = set()
 async def kafka_consumer_loop(kafka_topic):
     consumer = KafkaConsumer(
         kafka_topic,
-        bootstrap_servers='localhost:9092',
+        bootstrap_servers='kafka:9092',
         value_deserializer=lambda m: json.loads(m.decode('utf-8')),
         auto_offset_reset='earliest',
         enable_auto_commit=True,
@@ -34,7 +34,7 @@ async def ws_handler(websocket, path):
         connected_clients.remove(websocket)
 
 async def main():
-    ws_server = websockets.serve(ws_handler, "localhost", 8765)
+    ws_server = websockets.serve(ws_handler, "0.0.0.0", 8765)
     await asyncio.gather(
         ws_server,
         kafka_consumer_loop("chat-topic")

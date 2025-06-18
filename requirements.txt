@@ -1,11 +1,3 @@
-pytest
-httpx
-websocket-client
+flask
 kafka-python
-
-locust
-
-prometheus-api-client
-
-fastapi
-uvicorn
+websockets

@@ -11,7 +11,7 @@ async def ws_handler(websocket, path):
         connected_clients.remove(websocket)
 
 async def start_ws_server():
-    return await websockets.serve(ws_handler, "localhost", 8765)
+    return await websockets.serve(ws_handler, "0.0.0.0", 8765)
 
 if __name__ == "__main__":
     asyncio.run(start_ws_server())

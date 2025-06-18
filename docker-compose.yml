@@ -17,3 +17,23 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
+
+  ws_bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile.bridge
+    ports:
+      - "8765:8765"
+    depends_on:
+      - kafka
+    command: ["python", "mock_server/kafka_ws_bridge.py"]
+
+  rest_api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - kafka
+    command: ["python", "rest_api/app.py"]

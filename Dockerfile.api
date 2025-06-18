@@ -1,0 +1,11 @@
+# Dockerfile.api
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY rest_api /app/rest_api
+COPY requirements.txt /app
+
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+CMD ["python", "rest_api/app.py"]
